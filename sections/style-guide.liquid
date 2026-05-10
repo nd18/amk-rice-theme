@@ -1,0 +1,1145 @@
+{% comment %}
+  AMK Krishna Rice — Style Guide Section
+  All values consume CSS custom properties from assets/base.css.
+  Zero hardcoded hex values in CSS rules.
+{% endcomment %}
+
+<style>
+  /* ── Page shell ──────────────────────────────────────── */
+  .sg-page {
+    background: var(--color-surface-base);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+  }
+
+  /* ── Hero ────────────────────────────────────────────── */
+  .sg-hero {
+    background: var(--color-brand-secondary);
+    padding-block: var(--spacing-11);
+    text-align: center;
+  }
+  .sg-hero__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-brand-primary);
+    margin-bottom: var(--spacing-3);
+  }
+  .sg-hero__title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+    color: var(--color-text-inverse);
+    margin-bottom: var(--spacing-4);
+  }
+  .sg-hero__tagline {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-medium);
+    font-style: italic;
+    color: var(--color-surface-warm);
+  }
+  .sg-hero__meta {
+    margin-top: var(--spacing-5);
+    font-size: var(--font-size-small);
+    color: var(--color-text-inverse);
+    opacity: 0.4;
+  }
+
+  /* ── Section structure ───────────────────────────────── */
+  .sg-section {
+    padding-block: var(--spacing-10);
+    border-bottom: 1px solid var(--color-border-default);
+  }
+  .sg-section:last-child { border-bottom: none; }
+
+  .sg-section__header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-8);
+    padding-bottom: var(--spacing-4);
+    border-bottom: 2px solid var(--color-brand-primary);
+  }
+  .sg-section__num {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-brand-primary);
+    line-height: 1;
+    opacity: 0.25;
+  }
+  .sg-section__heading {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  /* ── Subsection label ────────────────────────────────── */
+  .sg-sub { margin-bottom: var(--spacing-6); }
+  .sg-sub + .sg-sub { margin-top: var(--spacing-9); }
+  .sg-sub__label {
+    font-family: var(--font-body);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-4);
+  }
+
+  /* ── Colour swatches ─────────────────────────────────── */
+  .sg-palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--spacing-4);
+  }
+  .sg-swatch {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-border-default);
+  }
+  .sg-swatch__color { height: 80px; width: 100%; display: block; }
+  .sg-swatch__info {
+    padding: var(--spacing-3);
+    background: var(--color-surface-base);
+  }
+  .sg-swatch__name {
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin: 0 0 2px;
+  }
+  .sg-swatch__token,
+  .sg-swatch__hex {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-caption);
+    display: block;
+  }
+  .sg-swatch__token { color: var(--color-text-muted); }
+  .sg-swatch__hex   { color: var(--color-text-secondary); }
+
+  /* ── Typeface cards ──────────────────────────────────── */
+  .sg-typeface-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
+  }
+  .sg-typeface-card {
+    padding: var(--spacing-6);
+    background: var(--color-surface-warm);
+    border-radius: var(--radius-lg);
+  }
+  .sg-typeface-card__role {
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-3);
+    display: block;
+  }
+  .sg-typeface-card__family {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+    margin: 0 0 var(--spacing-2);
+  }
+  .sg-typeface-card__specimen {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+  .sg-typeface-card__weights {
+    margin-top: var(--spacing-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  /* ── Type scale ──────────────────────────────────────── */
+  .sg-scale-item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-6);
+    padding-block: var(--spacing-5);
+    border-bottom: 1px solid var(--color-border-default);
+  }
+  .sg-scale-item:last-child { border-bottom: none; }
+  .sg-scale-meta {
+    min-width: 220px;
+    flex-shrink: 0;
+  }
+  .sg-scale-meta__token {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-caption);
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .sg-scale-meta__spec {
+    font-size: var(--font-size-caption);
+    color: var(--color-border-strong);
+    display: block;
+  }
+
+  /* ── Spacing scale ───────────────────────────────────── */
+  .sg-space-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-5);
+    margin-bottom: var(--spacing-3);
+  }
+  .sg-space-item__bar {
+    background: var(--color-brand-primary);
+    height: 24px;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+  }
+  .sg-space-item__label {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-caption);
+    color: var(--color-text-secondary);
+  }
+
+  /* ── Border radius ───────────────────────────────────── */
+  .sg-radius-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-8);
+    align-items: flex-end;
+  }
+  .sg-radius-item { text-align: center; }
+  .sg-radius-item__demo {
+    width: 80px;
+    height: 80px;
+    background: var(--color-surface-warm);
+    border: 2px solid var(--color-brand-primary);
+    margin-bottom: var(--spacing-3);
+  }
+  .sg-radius-item__label {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-caption);
+    color: var(--color-text-secondary);
+    display: block;
+  }
+  .sg-radius-item__value {
+    font-size: var(--font-size-caption);
+    color: var(--color-text-muted);
+    display: block;
+  }
+
+  /* ── Shadows ─────────────────────────────────────────── */
+  .sg-shadow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-6);
+  }
+  .sg-shadow-item {
+    background: var(--color-surface-base);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-6);
+    text-align: center;
+  }
+  .sg-shadow-item__token {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-caption);
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: var(--spacing-2);
+  }
+
+  /* ── Buttons ─────────────────────────────────────────── */
+  .sg-btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+    align-items: center;
+    margin-bottom: var(--spacing-5);
+  }
+  .sg-btn-row:last-child { margin-bottom: 0; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-size: var(--font-size-body-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    padding: var(--spacing-3) var(--spacing-6);
+    border-radius: var(--radius-md);
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      background var(--transition-base),
+      color var(--transition-base),
+      border-color var(--transition-base),
+      box-shadow var(--transition-base);
+  }
+  .btn--primary {
+    background: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+    border-color: var(--color-brand-primary);
+  }
+  .btn--primary:hover {
+    background: var(--color-brand-primary-dark);
+    border-color: var(--color-brand-primary-dark);
+  }
+  .btn--secondary {
+    background: transparent;
+    color: var(--color-brand-primary);
+    border-color: var(--color-brand-primary);
+  }
+  .btn--secondary:hover { background: var(--color-brand-primary-soft); }
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-text-primary);
+    border-color: var(--color-border-strong);
+  }
+  .btn--ghost:hover {
+    border-color: var(--color-brand-primary);
+    color: var(--color-brand-primary);
+  }
+  .btn--dark {
+    background: var(--color-brand-secondary);
+    color: var(--color-text-inverse);
+    border-color: var(--color-brand-secondary);
+  }
+  .btn--dark:hover {
+    background: var(--color-text-secondary);
+    border-color: var(--color-text-secondary);
+  }
+  .btn--inverse {
+    background: transparent;
+    color: var(--color-text-inverse);
+    border-color: var(--color-text-inverse);
+  }
+  .btn--lg {
+    font-size: var(--font-size-body);
+    padding: var(--spacing-4) var(--spacing-8);
+  }
+  .btn--sm {
+    font-size: var(--font-size-caption);
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+  .btn:disabled,
+  .btn[aria-disabled='true'] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* ── Form elements ───────────────────────────────────── */
+  .sg-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-6);
+  }
+  .sg-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+  .sg-label {
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+  }
+  .sg-input,
+  .sg-select,
+  .sg-textarea {
+    font-family: var(--font-body);
+    font-size: var(--font-size-body-sm);
+    color: var(--color-text-primary);
+    background: var(--color-surface-base);
+    border: 1.5px solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-3) var(--spacing-4);
+    width: 100%;
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .sg-input:focus,
+  .sg-select:focus,
+  .sg-textarea:focus {
+    border-color: var(--color-border-brand);
+    box-shadow: 0 0 0 3px var(--color-brand-primary-soft);
+  }
+  .sg-input--error { border-color: var(--color-feedback-error); }
+  .sg-input--error:focus { box-shadow: 0 0 0 3px var(--color-brand-primary-soft); }
+  .sg-textarea { resize: vertical; min-height: 100px; }
+  .sg-helper {
+    font-size: var(--font-size-caption);
+    color: var(--color-text-muted);
+  }
+  .sg-helper--error { color: var(--color-feedback-error); }
+  .sg-check-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    cursor: pointer;
+  }
+  .sg-check-row input[type='checkbox'],
+  .sg-check-row input[type='radio'] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-brand-primary);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* ── Badges ──────────────────────────────────────────── */
+  .sg-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-4);
+  }
+  .sg-badge-row:last-child { margin-bottom: 0; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: var(--radius-full);
+    line-height: 1.5;
+    border: 1.5px solid transparent;
+  }
+  .badge--brand   { background: var(--color-brand-primary);    color: var(--color-text-inverse); }
+  .badge--accent  { background: var(--color-brand-accent);     color: var(--color-text-inverse); }
+  .badge--sepia   { background: var(--color-brand-sepia);      color: var(--color-text-inverse); }
+  .badge--success { background: var(--color-feedback-success); color: var(--color-text-inverse); }
+  .badge--error   { background: var(--color-feedback-error);   color: var(--color-text-inverse); }
+  .badge--soft    { background: var(--color-brand-primary-soft); color: var(--color-brand-primary); }
+  .badge--warm    { background: var(--color-surface-warm);       color: var(--color-brand-sepia); }
+  .badge--outline {
+    background: transparent;
+    color: var(--color-brand-primary);
+    border-color: var(--color-brand-primary);
+  }
+
+  /* ── Usage guidelines ────────────────────────────────── */
+  .sg-guidelines-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-6);
+  }
+  .sg-rule {
+    padding: var(--spacing-5);
+    border-radius: var(--radius-md);
+    border-left: 4px solid;
+  }
+  .sg-rule--do   { background: var(--color-brand-primary-soft); border-left-color: var(--color-feedback-success); }
+  .sg-rule--dont { background: var(--color-surface-warm);       border-left-color: var(--color-feedback-error); }
+  .sg-rule__verdict {
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin-bottom: var(--spacing-4);
+    margin-top: 0;
+  }
+  .sg-rule--do   .sg-rule__verdict { color: var(--color-feedback-success); }
+  .sg-rule--dont .sg-rule__verdict { color: var(--color-feedback-error); }
+  .sg-rule__text {
+    font-size: var(--font-size-body-sm);
+    line-height: var(--line-height-body);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+  .sg-rule__text + .sg-rule__text { margin-top: var(--spacing-2); }
+
+  /* ── Token reference ─────────────────────────────────── */
+  .sg-token-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--spacing-2);
+  }
+  .sg-token {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-caption);
+    color: var(--color-text-secondary);
+    background: var(--color-surface-warm);
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--radius-sm);
+    display: block;
+  }
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .sg-typeface-row,
+    .sg-form-grid,
+    .sg-guidelines-grid {
+      grid-template-columns: 1fr;
+    }
+    .sg-scale-item { flex-direction: column; gap: var(--spacing-3); }
+    .sg-scale-meta { min-width: unset; }
+  }
+</style>
+
+<div class="sg-page">
+
+  <!-- ══ HERO ══════════════════════════════════════════ -->
+  <div class="sg-hero">
+    <div class="container">
+      <p class="sg-hero__eyebrow">Brand Design System — Internal Reference</p>
+      <h1 class="sg-hero__title">AMK Krishna Rice</h1>
+      <p class="sg-hero__tagline">"Truly! Softly!"</p>
+      <p class="sg-hero__meta">Est. 1964 &nbsp;·&nbsp; Tamil Nadu &nbsp;·&nbsp; v1.0</p>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- ══ 01 · COLOUR SYSTEM ════════════════════════ -->
+    <div class="sg-section">
+      <div class="sg-section__header">
+        <span class="sg-section__num">01</span>
+        <h2 class="sg-section__heading">Colour System</h2>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Primary Brand Colours</p>
+        <div class="sg-palette">
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-brand-primary);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Magenta</p>
+              <span class="sg-swatch__token">--color-brand-primary</span>
+              <span class="sg-swatch__hex">#C1006D</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-brand-secondary);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Near-Black</p>
+              <span class="sg-swatch__token">--color-brand-secondary</span>
+              <span class="sg-swatch__hex">#1A1A1A</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-surface-warm); border-bottom: 1px solid var(--color-border-default);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Warm Beige</p>
+              <span class="sg-swatch__token">--color-surface-warm</span>
+              <span class="sg-swatch__hex">#E8D4C8</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-surface-base); border-bottom: 1px solid var(--color-border-default);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">White</p>
+              <span class="sg-swatch__token">--color-surface-base</span>
+              <span class="sg-swatch__hex">#FFFFFF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Secondary / Supporting</p>
+        <div class="sg-palette">
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-brand-primary-dark);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Magenta Dark</p>
+              <span class="sg-swatch__token">--color-brand-primary-dark</span>
+              <span class="sg-swatch__hex">#8E0050</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-brand-primary-soft); border-bottom: 1px solid var(--color-border-default);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Soft Pink</p>
+              <span class="sg-swatch__token">--color-brand-primary-soft</span>
+              <span class="sg-swatch__hex">#FCE4EC</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-brand-sepia);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Sepia</p>
+              <span class="sg-swatch__token">--color-brand-sepia</span>
+              <span class="sg-swatch__hex">#8B7355</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-brand-accent);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Purple</p>
+              <span class="sg-swatch__token">--color-brand-accent</span>
+              <span class="sg-swatch__hex">#3D3198</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-text-secondary);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Charcoal</p>
+              <span class="sg-swatch__token">--color-text-secondary</span>
+              <span class="sg-swatch__hex">#414042</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-border-default); border-bottom: 1px solid var(--color-border-default);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Light Grey</p>
+              <span class="sg-swatch__token">--color-border-default</span>
+              <span class="sg-swatch__hex">#E5E5E5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Text Colours</p>
+        <div class="sg-palette">
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-text-primary);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Primary Text</p>
+              <span class="sg-swatch__token">--color-text-primary</span>
+              <span class="sg-swatch__hex">#1A1A1A</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-text-secondary);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Secondary Text</p>
+              <span class="sg-swatch__token">--color-text-secondary</span>
+              <span class="sg-swatch__hex">#414042</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-text-muted);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Muted / Meta</p>
+              <span class="sg-swatch__token">--color-text-muted</span>
+              <span class="sg-swatch__hex">#8B7355</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-text-brand);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Brand Emphasis</p>
+              <span class="sg-swatch__token">--color-text-brand</span>
+              <span class="sg-swatch__hex">#C1006D</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Feedback Colours</p>
+        <div class="sg-palette">
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-feedback-success);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Success</p>
+              <span class="sg-swatch__token">--color-feedback-success</span>
+              <span class="sg-swatch__hex">#2E7D32</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-feedback-error);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Error / Sale</p>
+              <span class="sg-swatch__token">--color-feedback-error</span>
+              <span class="sg-swatch__hex">#C62828</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-feedback-warning);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Warning</p>
+              <span class="sg-swatch__token">--color-feedback-warning</span>
+              <span class="sg-swatch__hex">#E65100</span>
+            </div>
+          </div>
+          <div class="sg-swatch">
+            <span class="sg-swatch__color" style="background: var(--color-feedback-info);"></span>
+            <div class="sg-swatch__info">
+              <p class="sg-swatch__name">Info</p>
+              <span class="sg-swatch__token">--color-feedback-info</span>
+              <span class="sg-swatch__hex">#3D3198</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 02 · TYPOGRAPHY ═══════════════════════════ -->
+    <div class="sg-section">
+      <div class="sg-section__header">
+        <span class="sg-section__num">02</span>
+        <h2 class="sg-section__heading">Typography</h2>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Font Families</p>
+        <div class="sg-typeface-row">
+          <div class="sg-typeface-card">
+            <span class="sg-typeface-card__role">Heading — Poppins</span>
+            <p class="sg-typeface-card__family" style="font-family: var(--font-heading);">Aa Bb Cc Dd Ee Ff</p>
+            <p class="sg-typeface-card__specimen" style="font-family: var(--font-heading); font-weight: var(--font-weight-regular);">ABCDEFGHIJKLM NOPQRSTUVWXYZ<br>abcdefghijklm nopqrstuvwxyz<br>0123456789 !@#₹&</p>
+            <div class="sg-typeface-card__weights">
+              <span style="font-family: var(--font-heading); font-weight: 400; font-size: var(--font-size-small);">Regular 400 — The quick brown fox</span>
+              <span style="font-family: var(--font-heading); font-weight: 500; font-size: var(--font-size-small);">Medium 500 — The quick brown fox</span>
+              <span style="font-family: var(--font-heading); font-weight: 600; font-size: var(--font-size-small);">SemiBold 600 — The quick brown fox</span>
+              <span style="font-family: var(--font-heading); font-weight: 700; font-size: var(--font-size-small);">Bold 700 — The quick brown fox</span>
+            </div>
+          </div>
+          <div class="sg-typeface-card">
+            <span class="sg-typeface-card__role">Body — DM Sans</span>
+            <p class="sg-typeface-card__family" style="font-family: var(--font-body);">Aa Bb Cc Dd Ee Ff</p>
+            <p class="sg-typeface-card__specimen" style="font-family: var(--font-body);">ABCDEFGHIJKLM NOPQRSTUVWXYZ<br>abcdefghijklm nopqrstuvwxyz<br>0123456789 !@#₹&</p>
+            <div class="sg-typeface-card__weights">
+              <span style="font-family: var(--font-body); font-weight: 400; font-size: var(--font-size-small);">Regular 400 — The quick brown fox</span>
+              <span style="font-family: var(--font-body); font-weight: 500; font-size: var(--font-size-small);">Medium 500 — The quick brown fox</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Type Scale</p>
+        <div>
+          <div class="sg-scale-item">
+            <div class="sg-scale-meta">
+              <span class="sg-scale-meta__token">--font-size-h1</span>
+              <span class="sg-scale-meta__spec">clamp(2rem → 3.5rem) · Poppins Bold</span>
+            </div>
+            <h1 style="font-family:var(--font-heading);font-size:var(--font-size-h1);font-weight:var(--font-weight-bold);line-height:var(--line-height-heading);margin:0;">Truly! Softly!</h1>
+          </div>
+          <div class="sg-scale-item">
+            <div class="sg-scale-meta">
+              <span class="sg-scale-meta__token">--font-size-h2</span>
+              <span class="sg-scale-meta__spec">clamp(1.5rem → 2.25rem) · Poppins Bold</span>
+            </div>
+            <h2 style="font-family:var(--font-heading);font-size:var(--font-size-h2);font-weight:var(--font-weight-bold);line-height:var(--line-height-heading);margin:0;">Premium Tamil Nadu Rice</h2>
+          </div>
+          <div class="sg-scale-item">
+            <div class="sg-scale-meta">
+              <span class="sg-scale-meta__token">--font-size-h3</span>
+              <span class="sg-scale-meta__spec">clamp(1.25rem → 1.75rem) · Poppins SemiBold</span>
+            </div>
+            <h3 style="font-family:var(--font-heading);font-size:var(--font-size-h3);font-weight:var(--font-weight-semibold);line-height:var(--line-height-heading);margin:0;">Farm-to-Table Heritage</h3>
+          </div>
+          <div class="sg-scale-item">
+            <div class="sg-scale-meta">
+              <span class="sg-scale-meta__token">--font-size-h4</span>
+              <span class="sg-scale-meta__spec">clamp(1.125rem → 1.375rem) · Poppins SemiBold</span>
+            </div>
+            <h4 style="font-family:var(--font-heading);font-size:var(--font-size-h4);font-weight:var(--font-weight-semibold);line-height:var(--line-height-heading);margin:0;">Soft-Grain Sona Masoori</h4>
+          </div>
+          <div class="sg-scale-item">
+            <div class="sg-scale-meta">
+              <span class="sg-scale-meta__token">--font-size-h5</span>
+              <span class="sg-scale-meta__spec">1.125rem · Poppins SemiBold</span>
+            </div>
+            <h5 style="font-family:var(--font-heading);font-size:var(--font-size-h5);font-weight:var(--font-weight-semibold);line-height:var(--line-height-heading);margin:0;">Trusted Since 1964</h5>
+          </div>
+          <div class="sg-scale-item">
+            <div class="sg-scale-meta">
+              <span class="sg-scale-meta__token">--font-size-h6</span>
+              <span class="sg-scale-meta__spec">1rem · Poppins SemiBold</span>
+            </div>
+            <h6 style="font-family:var(--font-heading);font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold);line-height:var(--line-height-heading);margin:0;">100% Natural. Zero Additives.</h6>
+          </div>
+          <div class="sg-scale-item">
+            <div class="sg-scale-meta">
+              <span class="sg-scale-meta__token">--font-size-body-lg</span>
+              <span class="sg-scale-meta__spec">1.125rem · DM Sans Regular · lh 1.5</span>
+            </div>
+            <p style="font-family:var(--font-body);font-size:var(--font-size-body-lg);font-weight:var(--font-weight-regular);line-height:var(--line-height-body);margin:0;">AMK Krishna Rice brings you the finest hand-sorted grains from the fertile paddy fields of Tamil Nadu — softness in every grain.</p>
+          </div>
+          <div class="sg-scale-item">
+            <div class="sg-scale-meta">
+              <span class="sg-scale-meta__token">--font-size-body</span>
+              <span class="sg-scale-meta__spec">1rem (16px) · DM Sans Regular · lh 1.5</span>
+            </div>
+            <p style="font-family:var(--font-body);font-size:var(--font-size-body);font-weight:var(--font-weight-regular);line-height:var(--line-height-body);margin:0;">AMK Krishna Rice brings you the finest hand-sorted grains from the fertile paddy fields of Tamil Nadu — softness in every grain.</p>
+          </div>
+          <div class="sg-scale-item">
+            <div class="sg-scale-meta">
+              <span class="sg-scale-meta__token">--font-size-small</span>
+              <span class="sg-scale-meta__spec">0.875rem (14px) · lh 1.5</span>
+            </div>
+            <p style="font-family:var(--font-body);font-size:var(--font-size-small);line-height:var(--line-height-body);color:var(--color-text-secondary);margin:0;">AMK Krishna Rice brings you the finest hand-sorted grains from the fertile paddy fields of Tamil Nadu.</p>
+          </div>
+          <div class="sg-scale-item">
+            <div class="sg-scale-meta">
+              <span class="sg-scale-meta__token">--font-size-caption</span>
+              <span class="sg-scale-meta__spec">0.8125rem (13px) · muted</span>
+            </div>
+            <p style="font-family:var(--font-body);font-size:var(--font-size-caption);line-height:var(--line-height-body);color:var(--color-text-muted);margin:0;">Caption · Per 100g serving · Approx. nutritional values · Store in cool dry place</p>
+          </div>
+          <div class="sg-scale-item">
+            <div class="sg-scale-meta">
+              <span class="sg-scale-meta__token">--font-size-label</span>
+              <span class="sg-scale-meta__spec">0.6875rem (11px) · ALL CAPS · wide tracking</span>
+            </div>
+            <span class="label-caps" style="color: var(--color-text-muted);">Category Label &nbsp;·&nbsp; Eyebrow Tag &nbsp;·&nbsp; Nav Item &nbsp;·&nbsp; Badge</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Tagline Treatment — Italic Reserved for Brand Moments</p>
+        <div style="background:var(--color-brand-secondary);border-radius:var(--radius-lg);padding:var(--spacing-10);text-align:center;">
+          <p style="font-family:var(--font-heading);font-size:var(--font-size-h2);font-weight:var(--font-weight-bold);font-style:italic;color:var(--color-brand-primary);letter-spacing:var(--letter-spacing-wider);margin:0 0 var(--spacing-3);">"Truly! Softly!"</p>
+          <p style="font-size:var(--font-size-caption);color:var(--color-text-inverse);opacity:0.5;margin:0;">Poppins Bold Italic · --letter-spacing-wider · on dark background</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 03 · SPACING SCALE ════════════════════════ -->
+    <div class="sg-section">
+      <div class="sg-section__header">
+        <span class="sg-section__num">03</span>
+        <h2 class="sg-section__heading">Spacing Scale — 8pt Grid</h2>
+      </div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:4px;"></div><span class="sg-space-item__label">--spacing-1 &nbsp;·&nbsp; 4px</span></div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:8px;"></div><span class="sg-space-item__label">--spacing-2 &nbsp;·&nbsp; 8px</span></div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:12px;"></div><span class="sg-space-item__label">--spacing-3 &nbsp;·&nbsp; 12px</span></div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:16px;"></div><span class="sg-space-item__label">--spacing-4 &nbsp;·&nbsp; 16px</span></div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:24px;"></div><span class="sg-space-item__label">--spacing-5 &nbsp;·&nbsp; 24px</span></div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:32px;"></div><span class="sg-space-item__label">--spacing-6 &nbsp;·&nbsp; 32px</span></div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:40px;"></div><span class="sg-space-item__label">--spacing-7 &nbsp;·&nbsp; 40px</span></div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:48px;"></div><span class="sg-space-item__label">--spacing-8 &nbsp;·&nbsp; 48px</span></div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:64px;"></div><span class="sg-space-item__label">--spacing-9 &nbsp;·&nbsp; 64px</span></div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:80px;"></div><span class="sg-space-item__label">--spacing-10 &nbsp;·&nbsp; 80px</span></div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:96px;"></div><span class="sg-space-item__label">--spacing-11 &nbsp;·&nbsp; 96px</span></div>
+      <div class="sg-space-item"><div class="sg-space-item__bar" style="width:128px;"></div><span class="sg-space-item__label">--spacing-12 &nbsp;·&nbsp; 128px</span></div>
+    </div>
+
+    <!-- ══ 04 · BORDER RADIUS ════════════════════════ -->
+    <div class="sg-section">
+      <div class="sg-section__header">
+        <span class="sg-section__num">04</span>
+        <h2 class="sg-section__heading">Border Radius</h2>
+      </div>
+      <p style="font-size:var(--font-size-small);color:var(--color-text-muted);margin-bottom:var(--spacing-6);">Subtle rounding matches the logo's rounded-rectangle frame — approachable but structured. Never sharp, never pill for structure.</p>
+      <div class="sg-radius-grid">
+        <div class="sg-radius-item">
+          <div class="sg-radius-item__demo" style="border-radius:var(--radius-sm);"></div>
+          <span class="sg-radius-item__label">--radius-sm</span>
+          <span class="sg-radius-item__value">4px · inputs, tags</span>
+        </div>
+        <div class="sg-radius-item">
+          <div class="sg-radius-item__demo" style="border-radius:var(--radius-md);"></div>
+          <span class="sg-radius-item__label">--radius-md</span>
+          <span class="sg-radius-item__value">8px · buttons, cards</span>
+        </div>
+        <div class="sg-radius-item">
+          <div class="sg-radius-item__demo" style="border-radius:var(--radius-lg);"></div>
+          <span class="sg-radius-item__label">--radius-lg</span>
+          <span class="sg-radius-item__value">16px · panels, modals</span>
+        </div>
+        <div class="sg-radius-item">
+          <div class="sg-radius-item__demo" style="border-radius:var(--radius-xl);"></div>
+          <span class="sg-radius-item__label">--radius-xl</span>
+          <span class="sg-radius-item__value">24px · hero, feature</span>
+        </div>
+        <div class="sg-radius-item">
+          <div class="sg-radius-item__demo" style="border-radius:var(--radius-full);width:80px;height:40px;"></div>
+          <span class="sg-radius-item__label">--radius-full</span>
+          <span class="sg-radius-item__value">9999px · badges only</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 05 · SHADOWS ══════════════════════════════ -->
+    <div class="sg-section">
+      <div class="sg-section__header">
+        <span class="sg-section__num">05</span>
+        <h2 class="sg-section__heading">Shadows</h2>
+      </div>
+      <p style="font-size:var(--font-size-small);color:var(--color-text-muted);margin-bottom:var(--spacing-6);">All shadows are warm-toned — sm/md use a magenta tint, lg/overlay use near-black. Never cold grey.</p>
+      <div class="sg-shadow-grid">
+        <div class="sg-shadow-item" style="box-shadow:var(--shadow-sm);">
+          <span class="sg-shadow-item__token">--shadow-sm</span>
+          <p style="font-size:var(--font-size-caption);color:var(--color-text-muted);margin:0;">Subtle lift · card hover</p>
+        </div>
+        <div class="sg-shadow-item" style="box-shadow:var(--shadow-md);">
+          <span class="sg-shadow-item__token">--shadow-md</span>
+          <p style="font-size:var(--font-size-caption);color:var(--color-text-muted);margin:0;">Product cards · dropdowns</p>
+        </div>
+        <div class="sg-shadow-item" style="box-shadow:var(--shadow-lg);">
+          <span class="sg-shadow-item__token">--shadow-lg</span>
+          <p style="font-size:var(--font-size-caption);color:var(--color-text-muted);margin:0;">Floating panels · sheets</p>
+        </div>
+        <div class="sg-shadow-item" style="box-shadow:var(--shadow-overlay);">
+          <span class="sg-shadow-item__token">--shadow-overlay</span>
+          <p style="font-size:var(--font-size-caption);color:var(--color-text-muted);margin:0;">Modals · drawers</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 06 · BUTTONS ══════════════════════════════ -->
+    <div class="sg-section">
+      <div class="sg-section__header">
+        <span class="sg-section__num">06</span>
+        <h2 class="sg-section__heading">Buttons</h2>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Variants</p>
+        <div class="sg-btn-row">
+          <button class="btn btn--primary">Primary CTA</button>
+          <button class="btn btn--secondary">Secondary</button>
+          <button class="btn btn--ghost">Ghost</button>
+          <button class="btn btn--dark">Dark</button>
+          <button class="btn btn--primary" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Sizes</p>
+        <div class="sg-btn-row">
+          <button class="btn btn--primary btn--lg">Large Button</button>
+          <button class="btn btn--primary">Default Button</button>
+          <button class="btn btn--primary btn--sm">Small Button</button>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">On Dark Background</p>
+        <div style="background:var(--color-brand-secondary);border-radius:var(--radius-lg);padding:var(--spacing-6);">
+          <div class="sg-btn-row">
+            <button class="btn btn--primary">Primary CTA</button>
+            <button class="btn btn--inverse">Outline Inverse</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 07 · FORM ELEMENTS ════════════════════════ -->
+    <div class="sg-section">
+      <div class="sg-section__header">
+        <span class="sg-section__num">07</span>
+        <h2 class="sg-section__heading">Form Elements</h2>
+      </div>
+
+      <div class="sg-form-grid">
+        <div class="sg-field">
+          <label class="sg-label" for="sg-input-default">Text Input — Default</label>
+          <input id="sg-input-default" class="sg-input" type="text" placeholder="e.g. Sona Masoori Rice">
+          <span class="sg-helper">Helper text — guidance for the field</span>
+        </div>
+        <div class="sg-field">
+          <label class="sg-label" for="sg-input-error">Text Input — Error State</label>
+          <input id="sg-input-error" class="sg-input sg-input--error" type="text" value="Invalid entry">
+          <span class="sg-helper sg-helper--error">This field is required</span>
+        </div>
+        <div class="sg-field">
+          <label class="sg-label" for="sg-select">Select Dropdown</label>
+          <select id="sg-select" class="sg-select">
+            <option>Choose a rice variety</option>
+            <option>Sona Masoori</option>
+            <option>Ponni Raw</option>
+            <option>Idli Rice</option>
+          </select>
+        </div>
+        <div class="sg-field">
+          <label class="sg-label" for="sg-textarea">Textarea</label>
+          <textarea id="sg-textarea" class="sg-textarea" placeholder="Tell us about your order requirements…"></textarea>
+        </div>
+        <div class="sg-field">
+          <p class="sg-label">Checkboxes</p>
+          <div style="display:flex;flex-direction:column;gap:var(--spacing-3);margin-top:var(--spacing-1);">
+            <label class="sg-check-row">
+              <input type="checkbox" checked>
+              <span style="font-size:var(--font-size-body-sm);color:var(--color-text-primary);">Sona Masoori (5 kg)</span>
+            </label>
+            <label class="sg-check-row">
+              <input type="checkbox">
+              <span style="font-size:var(--font-size-body-sm);color:var(--color-text-primary);">Ponni Boiled (10 kg)</span>
+            </label>
+            <label class="sg-check-row">
+              <input type="checkbox" disabled>
+              <span style="font-size:var(--font-size-body-sm);color:var(--color-text-disabled);">Idli Rice — out of stock</span>
+            </label>
+          </div>
+        </div>
+        <div class="sg-field">
+          <p class="sg-label">Radio Buttons</p>
+          <div style="display:flex;flex-direction:column;gap:var(--spacing-3);margin-top:var(--spacing-1);">
+            <label class="sg-check-row">
+              <input type="radio" name="sg-delivery" checked>
+              <span style="font-size:var(--font-size-body-sm);color:var(--color-text-primary);">Home Delivery</span>
+            </label>
+            <label class="sg-check-row">
+              <input type="radio" name="sg-delivery">
+              <span style="font-size:var(--font-size-body-sm);color:var(--color-text-primary);">Store Pickup</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 08 · BADGES & TAGS ════════════════════════ -->
+    <div class="sg-section">
+      <div class="sg-section__header">
+        <span class="sg-section__num">08</span>
+        <h2 class="sg-section__heading">Badges &amp; Tags</h2>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Filled — use for strong emphasis</p>
+        <div class="sg-badge-row">
+          <span class="badge badge--brand">Brand</span>
+          <span class="badge badge--accent">AMK Badge</span>
+          <span class="badge badge--sepia">Heritage</span>
+          <span class="badge badge--success">In Stock</span>
+          <span class="badge badge--error">Sale</span>
+        </div>
+      </div>
+      <div class="sg-sub">
+        <p class="sg-sub__label">Soft / Tinted — use for secondary info</p>
+        <div class="sg-badge-row">
+          <span class="badge badge--soft">New Arrival</span>
+          <span class="badge badge--warm">Organic</span>
+          <span class="badge badge--outline">Best Seller</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 09 · USAGE GUIDELINES ═════════════════════ -->
+    <div class="sg-section">
+      <div class="sg-section__header">
+        <span class="sg-section__num">09</span>
+        <h2 class="sg-section__heading">Usage Guidelines</h2>
+      </div>
+      <div class="sg-guidelines-grid">
+        <div class="sg-rule sg-rule--do">
+          <p class="sg-rule__verdict">✓ Do</p>
+          <p class="sg-rule__text">Use Magenta for primary CTAs, active states, and brand moments — buttons, underlines, key typographic highlights.</p>
+          <p class="sg-rule__text">Use Warm Beige and White for the majority of surface area.</p>
+          <p class="sg-rule__text">Use Purple exclusively for the AMK badge and informational UI states.</p>
+          <p class="sg-rule__text">Use Sepia for muted meta text and earthy illustration accents.</p>
+          <p class="sg-rule__text">Apply the dark overlay (55% opacity) on hero images for text legibility.</p>
+          <p class="sg-rule__text">Write headlines in Title Case using Poppins Bold.</p>
+          <p class="sg-rule__text">Write body copy in Sentence case using DM Sans Regular.</p>
+          <p class="sg-rule__text">Write eyebrow labels in ALL CAPS, DM Sans Medium, wide letter-spacing.</p>
+          <p class="sg-rule__text">Reserve italic only for the brand tagline — "Truly! Softly!"</p>
+        </div>
+        <div class="sg-rule sg-rule--dont">
+          <p class="sg-rule__verdict">✗ Don't</p>
+          <p class="sg-rule__text">Never use Magenta as a large background — it overwhelms. Keep it as an accent.</p>
+          <p class="sg-rule__text">Never hardcode hex values in component CSS — always consume CSS tokens from base.css.</p>
+          <p class="sg-rule__text">Don't use Purple for general decorative purposes — it's reserved for the AMK badge.</p>
+          <p class="sg-rule__text">Don't use cold grey shadows — all shadows must be warm-toned (magenta or near-black).</p>
+          <p class="sg-rule__text">Don't mix Poppins and DM Sans for the same typographic role in a single component.</p>
+          <p class="sg-rule__text">Don't use --radius-full on structural layout elements — only badges and tags.</p>
+          <p class="sg-rule__text">Don't use italic on anything other than the brand tagline.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 10 · TOKEN QUICK REFERENCE ════════════════ -->
+    <div class="sg-section">
+      <div class="sg-section__header">
+        <span class="sg-section__num">10</span>
+        <h2 class="sg-section__heading">Token Quick Reference</h2>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Colour Tokens</p>
+        <div class="sg-token-grid">
+          <code class="sg-token">--color-brand-primary</code>
+          <code class="sg-token">--color-brand-primary-dark</code>
+          <code class="sg-token">--color-brand-primary-soft</code>
+          <code class="sg-token">--color-brand-secondary</code>
+          <code class="sg-token">--color-brand-accent</code>
+          <code class="sg-token">--color-brand-sepia</code>
+          <code class="sg-token">--color-surface-base</code>
+          <code class="sg-token">--color-surface-warm</code>
+          <code class="sg-token">--color-surface-soft</code>
+          <code class="sg-token">--color-surface-overlay</code>
+          <code class="sg-token">--color-text-primary</code>
+          <code class="sg-token">--color-text-secondary</code>
+          <code class="sg-token">--color-text-muted</code>
+          <code class="sg-token">--color-text-inverse</code>
+          <code class="sg-token">--color-text-disabled</code>
+          <code class="sg-token">--color-text-brand</code>
+          <code class="sg-token">--color-border-default</code>
+          <code class="sg-token">--color-border-warm</code>
+          <code class="sg-token">--color-border-strong</code>
+          <code class="sg-token">--color-border-brand</code>
+          <code class="sg-token">--color-feedback-success</code>
+          <code class="sg-token">--color-feedback-error</code>
+          <code class="sg-token">--color-feedback-warning</code>
+          <code class="sg-token">--color-feedback-info</code>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Typography Tokens</p>
+        <div class="sg-token-grid">
+          <code class="sg-token">--font-heading</code>
+          <code class="sg-token">--font-body</code>
+          <code class="sg-token">--font-mono</code>
+          <code class="sg-token">--font-size-h1 … --font-size-h6</code>
+          <code class="sg-token">--font-size-body-lg</code>
+          <code class="sg-token">--font-size-body</code>
+          <code class="sg-token">--font-size-body-sm</code>
+          <code class="sg-token">--font-size-small</code>
+          <code class="sg-token">--font-size-caption</code>
+          <code class="sg-token">--font-size-label</code>
+          <code class="sg-token">--font-weight-regular (400)</code>
+          <code class="sg-token">--font-weight-medium (500)</code>
+          <code class="sg-token">--font-weight-semibold (600)</code>
+          <code class="sg-token">--font-weight-bold (700)</code>
+          <code class="sg-token">--line-height-heading (1.15)</code>
+          <code class="sg-token">--line-height-body (1.5)</code>
+          <code class="sg-token">--line-height-relaxed (1.7)</code>
+          <code class="sg-token">--letter-spacing-tight</code>
+          <code class="sg-token">--letter-spacing-normal</code>
+          <code class="sg-token">--letter-spacing-wide (eyebrow)</code>
+          <code class="sg-token">--letter-spacing-wider (tagline)</code>
+        </div>
+      </div>
+
+      <div class="sg-sub">
+        <p class="sg-sub__label">Layout, Spacing &amp; Effect Tokens</p>
+        <div class="sg-token-grid">
+          <code class="sg-token">--spacing-1 … --spacing-12</code>
+          <code class="sg-token">--grid-max-width (1440px)</code>
+          <code class="sg-token">--grid-content-width (1280px)</code>
+          <code class="sg-token">--grid-narrow-width (860px)</code>
+          <code class="sg-token">--grid-gutter (24px)</code>
+          <code class="sg-token">--grid-gutter-mobile (16px)</code>
+          <code class="sg-token">--section-spacing (80px)</code>
+          <code class="sg-token">--section-spacing-mobile (48px)</code>
+          <code class="sg-token">--radius-sm / md / lg / xl / full</code>
+          <code class="sg-token">--shadow-sm / md / lg / overlay</code>
+          <code class="sg-token">--transition-fast / base / slow</code>
+          <code class="sg-token">--z-base / raised / dropdown</code>
+          <code class="sg-token">--z-sticky / overlay / modal / toast</code>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+</div><!-- /sg-page -->
+
+{% schema %}
+{
+  "name": "Style Guide",
+  "settings": []
+}
+{% endschema %}
