@@ -1,11 +1,25 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
   <head>
-    {% # Inlined CSS Variables %}
+    {% # Inlined CSS Variables — Skeleton base tokens %}
     {% render 'css-variables' %}
 
     {% comment %}
-      Font preloading:
+      AMK brand fonts — loaded via Shopify font_picker (fonts.shopifycdn.com).
+      Preconnect + preload the critical weight of each font family, then
+      @font-face rules are injected below via the font_face filter.
+    {% endcomment %}
+    {% unless settings.type_header_font.system? %}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+      {{ settings.type_header_font | font_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
+    {% endunless %}
+    {% unless settings.type_body_font.system? %}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+      {{ settings.type_body_font | font_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
+    {% endunless %}
+
+    {% comment %}
+      Font preloading — Skeleton primary font:
       1. Preconnect to font CDN for faster connection
       2. Preload only the critical font variant (base weight)
       3. Additional variants load on-demand via @font-face
@@ -17,8 +31,52 @@
       {{ settings.type_primary_font | font_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
     {% endunless %}
 
+    {% comment %}
+      AMK brand font @font-face declarations + dynamic design token overrides.
+      Values here shadow the static defaults in assets/base.css and are driven
+      by the Shopify customiser (config/settings_schema.json).
+    {% endcomment %}
+    <style>
+      {{ settings.type_header_font | font_face: font_display: 'swap' }}
+      {{ settings.type_body_font | font_face: font_display: 'swap' }}
+
+      :root {
+        /* Brand colours — overridable via Shopify customiser */
+        --color-brand-primary: {{ settings.color_primary }};
+        --color-brand-primary-dark: {{ settings.color_primary_dark }};
+        --color-brand-primary-soft: {{ settings.color_primary_soft }};
+        --color-brand-accent: {{ settings.color_accent }};
+        --color-brand-sepia: {{ settings.color_sepia }};
+
+        /* Surfaces */
+        --color-surface-base: {{ settings.color_background }};
+        --color-surface-warm: {{ settings.color_surface_warm }};
+
+        /* Text */
+        --color-text-primary: {{ settings.color_text }};
+        --color-text-secondary: {{ settings.color_text_secondary }};
+
+        /* Borders & feedback */
+        --color-border-default: {{ settings.color_border }};
+        --color-feedback-success: {{ settings.color_success }};
+        --color-feedback-error: {{ settings.color_error }};
+
+        /* Typography */
+        --font-heading: {{ settings.type_header_font.family }}, sans-serif;
+        --font-body: {{ settings.type_body_font.family }}, sans-serif;
+        --font-size-body: {{ settings.type_base_size }}px;
+
+        /* Layout */
+        --grid-content-width: {{ settings.layout_max_width }}px;
+        --grid-gutter: {{ settings.grid_gutter }}px;
+        --section-spacing: {{ settings.section_spacing }}px;
+        --section-spacing-mobile: {{ settings.section_spacing | divided_by: 1.67 | round }}px;
+      }
+    </style>
+
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'base.css' | asset_url | stylesheet_tag }}
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
